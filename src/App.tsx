@@ -14,13 +14,22 @@ const App: React.FC = () => {
     setAssignments([...assignments, { title, completed: false }]);
   };
 
+  const deleteAssignment = (index: number) => {
+    setAssignments(assignments.filter((_, i) => i !== index));
+  };
+
   const createdCount = assignments.length;
   const completedCount = assignments.filter(assignment => assignment.completed).length;
 
   return (
     <>
       <Header addAssignment={addAssignment} />
-      <Assignments assignments={assignments} createdCount={createdCount} completedCount={completedCount} />
+      <Assignments 
+        assignments={assignments} 
+        createdCount={createdCount} 
+        completedCount={completedCount}
+        deleteAssignment={deleteAssignment}
+      />
     </>
   );
 }

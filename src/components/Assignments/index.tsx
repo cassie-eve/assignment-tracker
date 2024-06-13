@@ -11,9 +11,10 @@ interface AssignmentsProps {
   assignments: Assignment[];
   createdCount: number;
   completedCount: number;
+  deleteAssignment: (index: number) => void;
 }
 
-export const Assignments: React.FC<AssignmentsProps> = ({ assignments, createdCount, completedCount }) => {
+export const Assignments: React.FC<AssignmentsProps> = ({ assignments, createdCount, completedCount, deleteAssignment }) => {
   return (
     <section className={styles.assignments}>
       <header className={styles.header}>
@@ -30,7 +31,12 @@ export const Assignments: React.FC<AssignmentsProps> = ({ assignments, createdCo
 
       <div className={styles.list}>
         {assignments.map((assignment, index) => (
-          <Assignment key={index} title={assignment.title} completed={assignment.completed} />
+          <Assignment 
+            key={index} 
+            title={assignment.title} 
+            completed={assignment.completed}
+            onDelete={() => deleteAssignment(index)}
+          />
         ))}
       </div>
     </section>
