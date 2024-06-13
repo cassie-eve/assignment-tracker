@@ -12,9 +12,10 @@ interface AssignmentsProps {
   createdCount: number;
   completedCount: number;
   deleteAssignment: (index: number) => void;
+  toggleCompletion: (index: number) => void;
 }
 
-export const Assignments: React.FC<AssignmentsProps> = ({ assignments, createdCount, completedCount, deleteAssignment }) => {
+export const Assignments: React.FC<AssignmentsProps> = ({ assignments, createdCount, completedCount, deleteAssignment, toggleCompletion }) => {
   return (
     <section className={styles.assignments}>
       <header className={styles.header}>
@@ -36,6 +37,7 @@ export const Assignments: React.FC<AssignmentsProps> = ({ assignments, createdCo
             title={assignment.title} 
             completed={assignment.completed}
             onDelete={() => deleteAssignment(index)}
+            onToggleCompletion={() => toggleCompletion(index)}
           />
         ))}
       </div>

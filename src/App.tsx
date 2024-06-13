@@ -18,6 +18,12 @@ const App: React.FC = () => {
     setAssignments(assignments.filter((_, i) => i !== index));
   };
 
+  const toggleCompletion = (index: number) => {
+    setAssignments(assignments.map((assignment, i) => (
+      i === index ? { ...assignment, completed: !assignment.completed } : assignment
+    )));
+  };
+
   const createdCount = assignments.length;
   const completedCount = assignments.filter(assignment => assignment.completed).length;
 
@@ -29,6 +35,7 @@ const App: React.FC = () => {
         createdCount={createdCount} 
         completedCount={completedCount}
         deleteAssignment={deleteAssignment}
+        toggleCompletion={toggleCompletion}
       />
     </>
   );
